@@ -1,0 +1,17 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Env
+.env
+.env.*
+
+# Logs
+*.log
+
+# Node / Python (si aplica)
+node_modules/
+__pycache__/
+.venv/

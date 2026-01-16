@@ -1,0 +1,35 @@
+name: markdown-check
+
+on:
+  pull_request:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  basic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate repo structure
+        shell: bash
+        run: |
+          set -e
+          test -d "00_direccion"
+          test -d "01_backlog"
+          test -d "02_ejecucion"
+          test -d "03_validacion"
+          test -d "04_aprendizaje"
+          test -d "05_metodologia"
+          test -f "README.md"
+          test -f "01_backlog/nodo_template.md"
+          test -f "05_metodologia/cambios.md"
+          echo "Estructura OK"
+
+      - name: Check Markdown files exist
+        shell: bash
+        run: |
+          set -e
+          count=$(find . -type f \( -name "*.md" -o -name "LICENSE" \) | wc -l)
+          echo "Archivos Markdown/Texto: $count"
